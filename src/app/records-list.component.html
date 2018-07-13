@@ -1,0 +1,6 @@
+<p>Records list</p>
+<ul>
+  <li *ngFor="let logRecord of log| async">
+    <pre>{{logRecord.description}}</pre>
+  </li>
+</ul>
