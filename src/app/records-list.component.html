@@ -1,6 +1,73 @@
-<p>Records list</p>
-<ul>
-  <li *ngFor="let logRecord of log| async">
-    <pre>{{logRecord.description}}</pre>
-  </li>
-</ul>
+<header>
+  <h1>
+    <strong>My time log</strong>
+  </h1>
+</header>
+
+<!-- Section with time logging records -->
+<section id="pageContent">
+  <main role="main">
+    <article>
+      <button (click)="addItem(logSample)">Sample</button>
+
+      <ng-container *ngFor="let day of days; let i=index;">
+        <h2 *ngIf="day === today">Today</h2>
+        <h2 *ngIf="day !== today">{{day}}</h2>
+        <table class="bordered">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Time spent</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let logRecord of timeLogMap.get(day)">
+            <td>
+              <p>{{logRecord.description}}</p>
+            </td>
+            <td>
+              <p>{{logRecord.timeSpent}}</p>
+            </td>
+            <td>
+              <p>{{logRecord.date.seconds*1000 | date: 'yyyy-MM-dd h:mm:ss a'}}</p>
+            </td>
+          </tr>
+        </table>
+        <br>
+      </ng-container>
+    </article>
+    <article>
+      <button>1</button>
+      <button>1</button>
+      <button>1</button>
+      <button>1</button>
+      <button>1</button>
+      <button>1</button>
+    </article>
+  </main>
+
+  <!-- Section with time-logging inputs -->
+  <aside>
+    <div class="input-form">
+      <div class="input-form-heading">New record</div>
+      <form action="" method="post">
+        <label for="description">
+          <span>Description
+            <span class="required">*</span>
+          </span>
+          <input type="text" class="input-field" name="description" [(ngModel)]="description" />
+        </label>
+        <label for="time">
+          <span>Time spent
+            <span class="required">*</span>
+          </span>
+          <input type="number" class="input-field" name="time" [(ngModel)]="timeSpent" />
+        </label>
+        <label>
+          <span>&nbsp;</span>
+          <button (click)="sendRecord()">Register</button>
+        </label>
+      </form>
+    </div>
+  </aside>
+</section>
