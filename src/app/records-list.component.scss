@@ -276,6 +276,11 @@ article button:hover {
   color: black;
 }
 
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #dce9f9;
+  color: black;
+}
+
 /*-----Table -----------------*/
 
 table {

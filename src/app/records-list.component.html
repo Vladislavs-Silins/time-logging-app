@@ -8,9 +8,8 @@
 <section id="pageContent">
   <main role="main">
     <article>
-      <button (click)="addItem(logSample)">Sample</button>
 
-      <ng-container *ngFor="let day of days; let i=index;">
+      <ng-container *ngFor="let day of days | paginate: { itemsPerPage: 2, currentPage: p }">
         <h2 *ngIf="day === today">Today</h2>
         <h2 *ngIf="day !== today">{{day}}</h2>
         <table class="bordered">
@@ -37,12 +36,7 @@
       </ng-container>
     </article>
     <article>
-      <button>1</button>
-      <button>1</button>
-      <button>1</button>
-      <button>1</button>
-      <button>1</button>
-      <button>1</button>
+      <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
     </article>
   </main>
 
